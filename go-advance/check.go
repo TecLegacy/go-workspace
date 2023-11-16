@@ -1,34 +1,58 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-type authenticationInfo struct {
-	username string
-	password string
+func sendMessage(msg message) {
+	fmt.Println(msg.getMessage())
 }
 
-func (a authenticationInfo) getBasicAuth() string {
-	return fmt.Sprintf("Authorization: Basic %s:%s", a.username, a.password)
+type message interface {
+	getMessage() string
 }
 
-// don't touch below this line
+// don't edit below this line
 
-func test(authInfo authenticationInfo) {
-	fmt.Println(authInfo.getBasicAuth())
+type birthdayMessage struct {
+	birthdayTime  time.Time
+	recipientName string
+}
+
+func (bm birthdayMessage) getMessage() string {
+	return fmt.Sprintf("Hi %s, it is your birthday on %s", bm.recipientName, bm.birthdayTime.Format(time.RFC3339))
+}
+
+type sendingReport struct {
+	reportName    string
+	numberOfSends int
+}
+
+func (sr sendingReport) getMessage() string {
+	return fmt.Sprintf(`Your "%s" report is ready. You've sent %v messages.`, sr.reportName, sr.numberOfSends)
+}
+
+func test(m message) {
+	sendMessage(m)
 	fmt.Println("====================================")
 }
 
 func main() {
-	test(authenticationInfo{
-		username: "Google",
-		password: "12345",
+	test(sendingReport{
+		reportName:    "First Report",
+		numberOfSends: 10,
 	})
-	test(authenticationInfo{
-		username: "Bing",
-		password: "98765",
+	test(birthdayMessage{
+		recipientName: "John Doe",
+		birthdayTime:  time.Date(1994, 03, 21, 0, 0, 0, 0, time.UTC),
 	})
-	test(authenticationInfo{
-		username: "DDG",
-		password: "76921",
+	test(sendingReport{
+		reportName:    "First Report",
+		numberOfSends: 10,
+	})
+	test(birthdayMessage{
+		recipientName: "Bill Deer",
+		birthdayTime:  time.Date(1934, 05, 01, 0, 0, 0, 0, time.UTC),
 	})
 }
