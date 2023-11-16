@@ -10,6 +10,15 @@ func main() {
 		age:  20,
 	})
 
+	OwnerDetails(Home{
+		Landmark: "Delhi",
+		AreaCode: 30,
+		Owner: Person{
+			name: "Kanu",
+			age:  26,
+		},
+	})
+
 	/* Pass by value for variables
 	var value int
 	value = add(10,20)
@@ -21,9 +30,9 @@ func main() {
 }
 
 // Pass by Value for variables
-func add(x int, y int) int {
-	return x + y
-}
+// func add(x int, y int) int {
+// 	return x + y
+// }
 
 // Structs
 type Person struct {
@@ -32,8 +41,16 @@ type Person struct {
 }
 
 type Home struct {
+	Landmark string
+	AreaCode int
+	Owner    Person
 }
 
 func addToDB(p Person) {
-	fmt.Printf("Your Name is %s And Your age %d", p.name, p.age)
+	fmt.Printf("Your Name is %s And Your age %d \n", p.name, p.age)
+}
+
+func OwnerDetails(records Home) {
+	fmt.Printf("Your area code %d \n", records.AreaCode)
+	fmt.Printf("Your Owner Age is %d & name is %s", records.Owner.age, records.Owner.name)
 }
