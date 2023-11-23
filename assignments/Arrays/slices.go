@@ -3,12 +3,13 @@ package main
 import "fmt"
 
 func getMessageCosts(messages []string) []float64 {
-	cost := make([]float64, len(messages))
+	costs := make([]float64, len(messages))
 	for i := 0; i < len(messages); i++ {
 		messages := messages[i]
-		cost[i] := len(messages) * 0.01
+		cost := float64(len(messages)) * 0.01
+		costs[i] = cost
 	}
-	return cost
+	return costs
 }
 
 // don't edit below this line

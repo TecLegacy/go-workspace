@@ -4,8 +4,69 @@ import (
 	"fmt"
 )
 
+type Shape interface {
+	calculate() float64
+}
+type Circle struct {
+	radius int
+}
+
+func (c Circle) calculate() float64 {
+	return float64(c.radius)
+}
+
+func test(x Shape) {
+	fuk, ok := x.(Circle)
+	if !ok {
+		fmt.Println("fatal panic")
+	}
+	fmt.Printf("vals %v", fuk.radius)
+}
+
 func main() {
-	fmt.Print("check me ")
+
+	test(Circle{
+		radius: 20,
+	})
+
+	test1(dog{
+		breed: "german",
+		age:   10,
+		trait: Trait{
+			sound:  "woof",
+			energy: 10,
+		},
+		wearables: struct {
+			pawCloth  string
+			tailCloth string
+		}{
+			pawCloth:  "wool",
+			tailCloth: "wool",
+		},
+	})
+}
+
+func test1(d dog) {
+	fmt.Printf("dog bread is %s \n"+
+		"is %d old \n"+
+		"he likes to %s & is always full of %d \n "+
+		"his fav cloths are % s & for the tail he prefers %s \n", d.breed, d.age, d.trait.sound, d.trait.energy, d.wearables.pawCloth, d.wearables.tailCloth)
+
+}
+
+type dog struct {
+	breed     string
+	age       int
+	trait     Trait
+	wearables struct {
+		pawCloth  string
+		tailCloth string
+	}
+}
+
+type Trait struct {
+	sound  string
+	energy int
 }
 
 //#HEADING: Interfaces & Struct
