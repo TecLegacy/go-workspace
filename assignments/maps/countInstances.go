@@ -10,12 +10,11 @@ func getCounts(userIDs []string) map[string]int {
 	listOfUsers := make(map[string]int)
 
 	for _, id := range userIDs {
-		selectedID, ok := listOfUsers[id]
+		_, ok := listOfUsers[id]
 		if !ok {
 			listOfUsers[id] = 0
 		}
-		selectedID++
-		listOfUsers[id] = selectedID
+		listOfUsers[id]++
 	}
 
 	return listOfUsers
