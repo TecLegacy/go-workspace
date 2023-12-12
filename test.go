@@ -15,15 +15,23 @@ func (c Circle) calculate() float64 {
 	return float64(c.radius)
 }
 
-func test(x Shape) {
-	fuk, ok := x.(Circle)
+func test(s Shape) {
+	c, ok := s.(Circle)
 	if !ok {
 		fmt.Println("fatal panic")
 	}
-	fmt.Printf("vals %v", fuk.radius)
+	// fmt.Printf("vals %v", fuk.radius)
+	fmt.Printf("vals %T", c)
 }
 
 func main() {
+
+	some := make(map[string]int)
+	some["d"] = 1
+
+	do := map[string]int{
+		"asd": 1,
+	}
 
 	test(Circle{
 		radius: 20,

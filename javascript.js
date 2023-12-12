@@ -15,3 +15,12 @@ function passBy(increment) {
 const runtime = 10;
 const b = runtime + 30;
 // console.log(b);
+
+function testme() {
+  return function (x = 10) {
+    return x;
+  };
+}
+man = testme();
+console.log(man(1022));
+console.log(man(33));

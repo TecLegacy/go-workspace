@@ -4,20 +4,42 @@ import "fmt"
 
 func main() {
 
-	//struct invoke
-	addToDB(Person{
-		name: "keshav",
-		age:  20,
-	})
+  currentColor:=car{
+    color: "blue",
+  }
 
-	OwnerDetails(Home{
-		Landmark: "Delhi",
-		AreaCode: 30,
-		Owner: Person{
-			name: "Kanu",
-			age:  26,
-		},
-	})
+  currentColor.changeColor("red")
+  
+  fmt.Println(currentColor.color)
+
+  
+}
+
+//pointer receiver 
+type car struct{
+  color string
+}
+
+func (c *car) changeColor(color string){
+  c.color = color
+}
+
+// func main() {
+
+// 	//struct invoke
+// 	addToDB(Person{
+// 		name: "keshav",
+// 		age:  20,
+// 	})
+
+// 	OwnerDetails(Home{
+// 		Landmark: "Delhi",
+// 		AreaCode: 30,
+// 		Owner: Person{
+// 			name: "Kanu",
+// 			age:  26,
+// 		},
+// 	})
 
 	/* Pass by value for variables
 	var value int

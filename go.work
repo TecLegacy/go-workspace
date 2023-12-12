@@ -4,4 +4,6 @@ use (
 	./go-advance
 	./go-basics
 	./go-best-practices
+	./local-development/hello-go
+	./local-development/test-go
 )
