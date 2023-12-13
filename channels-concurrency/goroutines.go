@@ -1,16 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	ch := normalCh("keshav")
+	ch := make(chan int)
+	go func() {
+		ch <- 10
+	}()
+	val := <-ch
+	fmt.Println(val)
 
-	receiverChannel(ch)
+	chz := normalCh("keshav")
+	receiverChannel(chz)
 }
 
 // * first channel
 func normalCh(name string) chan string {
-	ch := make(chan string, 2)
+	ch := make(chan string, 1)
 
 	ch <- name
 
